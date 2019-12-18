@@ -5,7 +5,6 @@ import { useCartContext } from '@magento/peregrine/lib/context/cart';
 import { appendOptionsToPayload } from '@magento/peregrine/lib/util/appendOptionsToPayload';
 import { findMatchingVariant } from '@magento/peregrine/lib/util/findMatchingProductVariant';
 import { isProductConfigurable } from '@magento/peregrine/lib/util/isProductConfigurable';
-import { useAwaitQuery } from '@magento/peregrine/lib/hooks/useAwaitQuery';
 
 const INITIAL_OPTION_CODES = new Map();
 const INITIAL_OPTION_SELECTIONS = new Map();
@@ -171,8 +170,6 @@ export const useProductFullDetail = props => {
 
     const [fetchCartId] = useMutation(createCartMutation);
 
-    const fetchCartDetails = useAwaitQuery(getCartDetailsQuery);
-
     const [quantity, setQuantity] = useState(INITIAL_QUANTITY);
 
     const breadcrumbCategoryId = useMemo(
@@ -227,8 +224,8 @@ export const useProductFullDetail = props => {
             addItemToCart({
                 ...payload,
                 addItemMutation,
-                fetchCartDetails,
-                fetchCartId
+                fetchCartId,
+                getCartDetailsQuery
             });
         } else {
             console.error('Unsupported product type. Cannot add to cart.');
@@ -237,8 +234,8 @@ export const useProductFullDetail = props => {
         addConfigurableProductToCart,
         addItemToCart,
         addSimpleProductToCart,
-        fetchCartDetails,
         fetchCartId,
+        getCartDetailsQuery,
         isSupportedProductType,
         optionCodes,
         optionSelections,
