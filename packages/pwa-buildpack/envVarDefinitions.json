@@ -37,6 +37,12 @@
                     "type": "str",
                     "desc": "Specify the exact domain of the custom origin manually.",
                     "default": ""
+                },
+                {
+                    "name": "PAYPAL_CLIENT_ID",
+                    "type": "str",
+                    "desc": "Paypal client ID.",
+                    "default": "ATbH9kBoWMrtQnO3QCUKa2LGI090XZfmbEG2bfIoO_npZ9y_5T1v3NXbhv3dGXiVuhmdbTsihE5z3h_r"
                 }
             ]
         },

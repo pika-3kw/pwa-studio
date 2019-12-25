@@ -10,6 +10,7 @@ import renderRoutes from './renderRoutes';
 import errorRecord from '../../util/createErrorRecord';
 import ToastContainer from '../ToastContainer';
 import Icon from '../Icon';
+import Script from 'react-load-script';
 
 import { getToastId, useToasts } from '@magento/peregrine';
 
@@ -18,6 +19,11 @@ import {
     CloudOff as CloudOffIcon,
     Wifi as WifiIcon
 } from 'react-feather';
+
+// const CLIENT_ID = 'ATbH9kBoWMrtQnO3QCUKa2LGI090XZfmbEG2bfIoO_npZ9y_5T1v3NXbhv3dGXiVuhmdbTsihE5z3h_r';
+const src = `https://www.paypal.com/sdk/js?client-id=${
+    process.env.PAYPAL_CLIENT_ID
+}`;
 
 const OnlineIcon = <Icon src={WifiIcon} attrs={{ width: 18 }} />;
 const OfflineIcon = <Icon src={CloudOffIcon} attrs={{ width: 18 }} />;
@@ -135,6 +141,12 @@ const App = props => {
             <Navigation />
             <MiniCart isOpen={cartIsOpen} />
             <ToastContainer />
+            <Script
+                url={src}
+                onCreate={() => console.log('Script created.')}
+                onError={() => console.log('Script error.')}
+                onLoad={() => console.log('Script loaded.')}
+            />
         </HeadProvider>
     );
 };

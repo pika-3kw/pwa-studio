@@ -9,6 +9,7 @@ import { useFormState } from 'informed';
 import { array, bool, func, shape, string } from 'prop-types';
 
 import BraintreeDropin from './braintreeDropin';
+import PaypalButton from './PaypalButton';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
 import Field from '../Field';
@@ -194,6 +195,7 @@ const PaymentsFormItems = props => {
                         onReady={setIsReady}
                     />
                 </div>
+                <PaypalButton />
                 <div className={classes.address_check}>
                     <Checkbox
                         field="addresses_same"
